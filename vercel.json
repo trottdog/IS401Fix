@@ -1,14 +1,18 @@
 {
+  "version": 2,
   "buildCommand": "npm run web:build",
   "outputDirectory": "static-build",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "handle": "filesystem"
     },
     {
-      "source": "/:path((?!api/)(?!.*\\..*).*)",
-      "destination": "/index.html"
+      "src": "^/api(?:/(.*))?$",
+      "dest": "/api/[...all].ts"
+    },
+    {
+      "src": "^/(.*)$",
+      "dest": "/index.html"
     }
   ]
 }
