@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run web:build",
+  "outputDirectory": "static-build",
+  "rewrites": [
+    {
+      "source": "/:path((?!api/)(?!.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

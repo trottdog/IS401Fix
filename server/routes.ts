@@ -1,5 +1,4 @@
 import type { Express, Request, Response } from "express";
-import { createServer, type Server } from "node:http";
 import * as path from "path";
 import * as fs from "fs";
 import { storage } from "./storage";
@@ -57,7 +56,7 @@ async function loadEventIfClubAdmin(req: Request, res: Response, eventId: string
   return event;
 }
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export async function registerRoutes(app: Express): Promise<void> {
   app.get("/api/map", (_req, res) => {
     const mapPath = path.resolve(process.cwd(), "server", "templates", "map.html");
     const html = fs.readFileSync(mapPath, "utf-8");
@@ -375,6 +374,4 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ message: "Marked as read" });
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
 }
