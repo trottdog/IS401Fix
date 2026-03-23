@@ -1,0 +1,9 @@
+.expo/
+deploy-bundle/
+.git/
+.local/
+.env
+.env.*
+node_modules/
+static-build/
+server_dist/
