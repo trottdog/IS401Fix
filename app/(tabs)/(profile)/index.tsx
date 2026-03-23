@@ -116,12 +116,12 @@ export default function ProfileScreen() {
         contentContainerStyle={{ paddingTop: topInset, paddingBottom: layout.tabBarHeight + 40 }}
         contentInsetAdjustmentBehavior="automatic"
       >
-        <View style={styles.header}>
+        <View style={[styles.header, layout.isPhoneWeb && styles.headerPhone]}>
           <View style={styles.headerLeft}>
-            <Text style={styles.headerTitle}>Your BYUconnect home base</Text>
-            <Text style={styles.headerSubtitle}>Saved plans, reservations, and account details stay easy to scan on every screen size.</Text>
+            <Text style={[styles.headerTitle, layout.isPhoneWeb && styles.headerTitlePhone]}>Your BYUconnect home base</Text>
+            <Text style={[styles.headerSubtitle, layout.isPhoneWeb && styles.headerSubtitlePhone]}>Saved plans, reservations, and account details stay easy to scan on every screen size.</Text>
           </View>
-          <View style={styles.headerActions}>
+          <View style={[styles.headerActions, layout.isPhoneWeb && styles.headerActionsPhone]}>
             <Pressable onPress={() => router.push("/(tabs)/(profile)/notifications")} hitSlop={10} style={styles.headerIcon}>
               <Ionicons name="notifications-outline" size={24} color={Colors.light.text} />
             </Pressable>
@@ -205,11 +205,18 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 18,
   },
+  headerPhone: {
+    gap: 12,
+  },
   headerLeft: { flex: 1 },
   headerTitle: {
     fontSize: 32,
     fontFamily: "Inter_700Bold",
     color: Colors.light.text,
+  },
+  headerTitlePhone: {
+    fontSize: 27,
+    lineHeight: 32,
   },
   headerSubtitle: {
     marginTop: 8,
@@ -219,9 +226,16 @@ const styles = StyleSheet.create({
     lineHeight: 23,
     maxWidth: 720,
   },
+  headerSubtitlePhone: {
+    lineHeight: 21,
+    maxWidth: undefined,
+  },
   headerActions: {
     flexDirection: "row",
     gap: 16,
+  },
+  headerActionsPhone: {
+    paddingTop: 2,
   },
   headerIcon: {
     width: 44,

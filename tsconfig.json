@@ -1,26 +1,89 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
       ],
       "@shared/*": [
         "./shared/*"
+      ],
+      "expo-router": [
+        "./web-shims/expo-router"
+      ],
+      "expo-router/unstable-native-tabs": [
+        "./web-shims/expo-router-unstable-native-tabs"
+      ],
+      "expo-haptics": [
+        "./web-shims/expo-haptics"
+      ],
+      "expo-linear-gradient": [
+        "./web-shims/expo-linear-gradient"
+      ],
+      "expo-blur": [
+        "./web-shims/expo-blur"
+      ],
+      "expo-glass-effect": [
+        "./web-shims/expo-glass-effect"
+      ],
+      "expo-splash-screen": [
+        "./web-shims/expo-splash-screen"
+      ],
+      "expo-status-bar": [
+        "./web-shims/expo-status-bar"
+      ],
+      "expo-image-picker": [
+        "./web-shims/expo-image-picker"
+      ],
+      "react-native-safe-area-context": [
+        "./web-shims/react-native-safe-area-context"
+      ],
+      "react-native-keyboard-controller": [
+        "./web-shims/react-native-keyboard-controller"
+      ],
+      "react-native-gesture-handler": [
+        "./web-shims/react-native-gesture-handler"
+      ],
+      "@expo/google-fonts/inter": [
+        "./web-shims/inter-fonts"
+      ],
+      "@expo-google-fonts/inter": [
+        "./web-shims/inter-fonts"
+      ],
+      "@expo/vector-icons": [
+        "./web-shims/vector-icons"
       ]
     }
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "**/*.tsx"
   ],
   "exclude": [
     "server_dist",
     "static-build",
-    "knexfile.cjs"
+    "knexfile.cjs",
+    "app/**/_layout.tsx",
+    "app/+not-found.tsx",
+    "app/+native-intent.tsx"
   ]
 }

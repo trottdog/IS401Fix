@@ -29,7 +29,14 @@ export function SegmentedControl({ segments, selectedIndex, onChange, style }: S
             }}
             style={[styles.segment, isActive && styles.segmentActive]}
           >
-            <Text style={[styles.segmentText, isActive && styles.segmentTextActive]}>
+            <Text
+              numberOfLines={1}
+              style={[
+                styles.segmentText,
+                layout.isPhoneWeb && styles.segmentTextPhone,
+                isActive && styles.segmentTextActive,
+              ]}
+            >
               {label}
             </Text>
           </Pressable>
@@ -50,6 +57,7 @@ const styles = StyleSheet.create({
   },
   segment: {
     flex: 1,
+    minWidth: 0,
     paddingVertical: 11,
     alignItems: "center",
     borderRadius: 12,
@@ -66,6 +74,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "Inter_500Medium",
     color: Colors.light.textSecondary,
+    flexShrink: 1,
+  },
+  segmentTextPhone: {
+    fontSize: 12,
   },
   segmentTextActive: {
     color: Colors.light.text,

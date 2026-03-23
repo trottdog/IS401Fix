@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { reloadAppAsync } from "expo";
 import {
   StyleSheet,
   View,
@@ -36,7 +35,7 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
 
   const handleRestart = async () => {
     try {
-      await reloadAppAsync();
+      window.location.reload();
     } catch (restartError) {
       console.error("Failed to restart app:", restartError);
       resetError();

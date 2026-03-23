@@ -140,6 +140,9 @@ export default function DiscoverScreen() {
   }
 
   const desktopMapHeight = layout.isDesktop ? Math.max(layout.mapHeight, 620) : undefined;
+  const mobileMapHeight = !layout.isDesktop
+    ? Math.min(Math.max(layout.height * 0.46, 320), 380)
+    : undefined;
 
   const renderMapContent = () => (
     <View style={[styles.mapContainer, layout.isDesktop && styles.mapContainerDesktop]}>
@@ -147,6 +150,7 @@ export default function DiscoverScreen() {
         style={[
           styles.mapFrame,
           layout.isDesktop && styles.mapFrameDesktop,
+          !layout.isDesktop && mobileMapHeight ? { height: mobileMapHeight } : null,
           layout.isDesktop && desktopMapHeight ? { height: desktopMapHeight } : null,
         ]}
       >
@@ -154,7 +158,7 @@ export default function DiscoverScreen() {
           initialRegion={BYU_REGION}
           markers={mapMarkers}
           onMarkerPress={handleMarkerPress}
-          height={desktopMapHeight}
+          height={layout.isDesktop ? desktopMapHeight : mobileMapHeight}
         />
       </View>
 
@@ -398,8 +402,8 @@ export default function DiscoverScreen() {
     <View style={[styles.header, layout.isDesktop && styles.headerDesktop]}>
       <View style={styles.headerCopy}>
         <Text style={styles.eyebrow}>Campus life at a glance</Text>
-        <View style={styles.headerRow}>
-          <Text style={styles.headerTitle}>Discover clubs and events around BYU</Text>
+        <View style={[styles.headerRow, layout.isPhoneWeb && styles.headerRowPhone]}>
+          <Text style={[styles.headerTitle, layout.isPhoneWeb && styles.headerTitlePhone]}>Discover clubs and events around BYU</Text>
           <View style={styles.headerActions}>
             {!layout.isDesktop && (
               <Pressable
@@ -407,7 +411,7 @@ export default function DiscoverScreen() {
                 style={[styles.iconBtn, styles.searchIconBtn]}
                 hitSlop={8}
               >
-                <Ionicons name="search" size={19} color={Colors.light.tint} />
+                <Ionicons name="search" size={19} color="#fff" />
               </Pressable>
             )}
             <Pressable
@@ -419,7 +423,7 @@ export default function DiscoverScreen() {
             </Pressable>
           </View>
         </View>
-        <Text style={styles.headerSubtitle}>
+        <Text style={[styles.headerSubtitle, layout.isPhoneWeb && styles.headerSubtitlePhone]}>
           Browse what is happening now, save plans for later, and explore communities without losing the mobile-first flow.
         </Text>
       </View>
@@ -558,6 +562,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 16,
   },
+  headerRowPhone: {
+    gap: 12,
+  },
   headerActions: {
     flexDirection: "row",
     alignItems: "center",
@@ -570,12 +577,20 @@ const styles = StyleSheet.create({
     color: Colors.light.text,
     lineHeight: 40,
   },
+  headerTitlePhone: {
+    fontSize: 28,
+    lineHeight: 33,
+  },
   headerSubtitle: {
     maxWidth: 720,
     fontSize: 15,
     fontFamily: "Inter_400Regular",
     color: Colors.light.textSecondary,
     lineHeight: 23,
+  },
+  headerSubtitlePhone: {
+    maxWidth: undefined,
+    lineHeight: 21,
   },
   createBtn: {
     width: 42,

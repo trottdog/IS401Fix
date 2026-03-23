@@ -122,8 +122,8 @@ export default function MyClubsScreen() {
     <PageShell>
       <View style={[styles.container, { paddingTop: topInset }]}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Find your campus communities</Text>
-          <Text style={styles.headerSubtitle}>
+          <Text style={[styles.headerTitle, layout.isPhoneWeb && styles.headerTitlePhone]}>Find your campus communities</Text>
+          <Text style={[styles.headerSubtitle, layout.isPhoneWeb && styles.headerSubtitlePhone]}>
             Keep your club hub clean on mobile, while giving desktop enough room to browse and compare organizations.
           </Text>
         </View>
@@ -206,6 +206,10 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_700Bold",
     color: Colors.light.text,
   },
+  headerTitlePhone: {
+    fontSize: 27,
+    lineHeight: 32,
+  },
   headerSubtitle: {
     marginTop: 8,
     maxWidth: 720,
@@ -213,6 +217,10 @@ const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     color: Colors.light.textSecondary,
     lineHeight: 23,
+  },
+  headerSubtitlePhone: {
+    lineHeight: 21,
+    maxWidth: undefined,
   },
   list: {
     paddingTop: 4,

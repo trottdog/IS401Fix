@@ -43,15 +43,15 @@ export default function RegisterScreen() {
 
   return (
     <PageShell>
-      <View style={[styles.container, Platform.OS === "web" && styles.containerWeb]}>
+      <View style={[styles.container, layout.isDesktop && styles.containerWeb]}>
         <View style={[styles.brandPanel, layout.isDesktop && styles.brandPanelDesktop]}>
           <Text style={styles.brandEyebrow}>Get connected</Text>
-          <Text style={styles.title}>Join BYUconnect</Text>
-          <Text style={styles.subtitle}>Create your account to start finding clubs, reserving events, and keeping up with what is happening across campus.</Text>
+          <Text style={[styles.title, layout.isPhoneWeb && styles.titlePhone]}>Join BYUconnect</Text>
+          <Text style={[styles.subtitle, layout.isPhoneWeb && styles.subtitlePhone]}>Create your account to start finding clubs, reserving events, and keeping up with what is happening across campus.</Text>
         </View>
 
         <View style={[styles.content, layout.isDesktop && styles.contentDesktop]}>
-          <View style={styles.formCard}>
+          <View style={[styles.formCard, layout.isPhoneWeb && styles.formCardPhone]}>
             <View style={styles.form}>
               <View style={styles.inputWrapper}>
                 <Text style={styles.label}>Full Name</Text>
@@ -117,7 +117,7 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", gap: 24, paddingVertical: 24 },
   containerWeb: { flexDirection: "row" },
-  brandPanel: { paddingTop: 32, paddingRight: 8 },
+  brandPanel: { paddingTop: 24, paddingRight: 8 },
   brandPanelDesktop: { flex: 1, justifyContent: "center", paddingRight: 36 },
   brandEyebrow: { fontSize: 12, fontFamily: "Inter_600SemiBold", color: Colors.light.accent, textTransform: "uppercase", letterSpacing: 1.2, marginBottom: 12 },
   content: { justifyContent: "center" },
@@ -134,8 +134,11 @@ const styles = StyleSheet.create({
     shadowRadius: 34,
     elevation: 3,
   },
+  formCardPhone: { borderRadius: 24, padding: 22 },
   title: { fontSize: 32, fontFamily: "Inter_700Bold", color: Colors.light.tint },
+  titlePhone: { fontSize: 28 },
   subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", color: Colors.light.textSecondary, marginTop: 8, lineHeight: 23, maxWidth: 520 },
+  subtitlePhone: { lineHeight: 22, maxWidth: undefined },
   form: { gap: 20 },
   inputWrapper: { gap: 6 },
   label: { fontSize: 13, fontFamily: "Inter_600SemiBold", color: Colors.light.text, textTransform: "uppercase" as const, letterSpacing: 0.5 },

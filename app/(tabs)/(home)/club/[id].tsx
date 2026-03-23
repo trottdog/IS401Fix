@@ -744,7 +744,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: Platform.OS === "web" ? 10 : 12,
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: "Inter_400Regular",
     color: Colors.light.text,
     backgroundColor: Colors.light.surface,

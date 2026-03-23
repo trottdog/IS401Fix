@@ -43,16 +43,16 @@ export default function LoginScreen() {
 
   return (
     <PageShell>
-      <View style={[styles.container, Platform.OS === "web" && styles.containerWeb]}>
+      <View style={[styles.container, layout.isDesktop && styles.containerWeb]}>
         <View style={[styles.brandPanel, layout.isDesktop && styles.brandPanelDesktop]}>
           <Text style={styles.brandEyebrow}>Campus clubs</Text>
-          <Text style={styles.title}>Welcome to</Text>
-          <Text style={styles.titleBrand}>BYUconnect</Text>
-          <Text style={styles.subtitle}>Sign in to discover campus events, organizations, and opportunities from a layout that works just as well on your phone as it does in a browser.</Text>
+          <Text style={[styles.title, layout.isPhoneWeb && styles.titlePhone]}>Welcome to</Text>
+          <Text style={[styles.titleBrand, layout.isPhoneWeb && styles.titleBrandPhone]}>BYUconnect</Text>
+          <Text style={[styles.subtitle, layout.isPhoneWeb && styles.subtitlePhone]}>Sign in to discover campus events, organizations, and opportunities from a layout that works just as well on your phone as it does in a browser.</Text>
         </View>
 
         <View style={[styles.content, layout.isDesktop && styles.contentDesktop]}>
-          <View style={styles.formCard}>
+          <View style={[styles.formCard, layout.isPhoneWeb && styles.formCardPhone]}>
             <View style={styles.header}>
               <Text style={styles.formTitle}>Sign in</Text>
               <Text style={styles.formSubtitle}>Use your BYU email to continue.</Text>
@@ -132,7 +132,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", gap: 24, paddingVertical: 24 },
   containerWeb: { flexDirection: "row" },
-  brandPanel: { paddingTop: 32, paddingRight: 8 },
+  brandPanel: { paddingTop: 24, paddingRight: 8 },
   brandPanelDesktop: { flex: 1, justifyContent: "center", paddingRight: 36 },
   brandEyebrow: { fontSize: 12, fontFamily: "Inter_600SemiBold", color: Colors.light.accent, textTransform: "uppercase", letterSpacing: 1.2, marginBottom: 12 },
   content: { justifyContent: "center" },
@@ -149,10 +149,14 @@ const styles = StyleSheet.create({
     shadowRadius: 34,
     elevation: 3,
   },
+  formCardPhone: { borderRadius: 24, padding: 22 },
   header: { marginBottom: 28 },
   title: { fontSize: 28, fontFamily: "Inter_400Regular", color: Colors.light.textSecondary },
+  titlePhone: { fontSize: 24 },
   titleBrand: { fontSize: 36, fontFamily: "Inter_700Bold", color: Colors.light.tint, marginTop: 4 },
+  titleBrandPhone: { fontSize: 30 },
   subtitle: { fontSize: 15, fontFamily: "Inter_400Regular", color: Colors.light.textSecondary, marginTop: 8, lineHeight: 23, maxWidth: 520 },
+  subtitlePhone: { lineHeight: 22, maxWidth: undefined },
   formTitle: { fontSize: 28, fontFamily: "Inter_700Bold", color: Colors.light.text },
   formSubtitle: { fontSize: 14, fontFamily: "Inter_400Regular", color: Colors.light.textSecondary, marginTop: 8 },
   form: { gap: 20 },

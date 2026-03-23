@@ -840,7 +840,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: "Inter_400Regular",
     color: Colors.light.text,
     borderWidth: 1,

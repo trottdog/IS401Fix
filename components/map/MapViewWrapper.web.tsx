@@ -38,7 +38,9 @@ export function MapViewWrapper({
   const [loaded, setLoaded] = useState(false);
   const layout = useResponsiveLayout();
   const screenHeight = Dimensions.get("window").height;
-  const mapHeight = height ?? Math.max(layout.mapHeight, Math.max(screenHeight - 220, 400));
+  const mapHeight = height ?? (layout.isPhoneWeb
+    ? Math.min(Math.max(screenHeight * 0.46, 320), 380)
+    : Math.max(layout.mapHeight, Math.max(screenHeight - 220, 400)));
 
   const iframeSrc = useMemo(() => {
     const base = getBackendUrl();
