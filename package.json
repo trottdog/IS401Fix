@@ -10,7 +10,7 @@
     "server:dev": "npm run dev",
     "dev": "npm run web:build && node --import tsx server/index.ts",
     "web:dev": "npm run dev",
-    "web:build": "npx expo export --platform web --output-dir static-build",
+    "web:build": "expo export --platform web --output-dir static-build",
     "server:build": "esbuild server/index.ts --platform=node --packages=external --bundle --format=cjs --outdir=server_dist",
     "server:prod": "node server_dist/index.js",
     "build": "npm run web:build && npm run server:build",
@@ -18,8 +18,8 @@
     "db:migrate": "knex --knexfile knexfile.cjs migrate:latest",
     "db:rollback": "knex --knexfile knexfile.cjs migrate:rollback",
     "db:status": "knex --knexfile knexfile.cjs migrate:status",
-    "lint": "npx expo lint",
-    "lint:fix": "npx expo lint --fix"
+    "lint": "expo lint",
+    "lint:fix": "expo lint --fix"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
