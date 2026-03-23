@@ -2,6 +2,7 @@ import type { Express, Request, Response } from "express";
 import * as path from "path";
 import * as fs from "fs";
 import { storage } from "./storage";
+import { db } from "./db";
 import {
   insertUserSchema,
   insertEventSchema,
@@ -57,6 +58,16 @@ async function loadEventIfClubAdmin(req: Request, res: Response, eventId: string
 }
 
 export async function registerRoutes(app: Express): Promise<void> {
+  app.get("/api/health", async (_req, res) => {
+    try {
+      await db.raw("select 1");
+      res.json({ ok: true });
+    } catch (error) {
+      console.error("Health check failed:", error);
+      res.status(500).json({ ok: false, message: "Database connection failed" });
+    }
+  });
+
   app.get("/api/map", (_req, res) => {
     const mapPath = path.resolve(process.cwd(), "server", "templates", "map.html");
     const html = fs.readFileSync(mapPath, "utf-8");

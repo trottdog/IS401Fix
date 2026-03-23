@@ -9,6 +9,14 @@ export const config = {
 };
 
 export default async function handler(req: Request, res: Response) {
-  const app = await createApp({ serveFrontend: false });
-  return app(req, res);
+  try {
+    const app = await createApp({ serveFrontend: false });
+    return app(req, res);
+  } catch (error) {
+    console.error("Vercel API bootstrap failed:", error);
+    if (!res.headersSent) {
+      return res.status(500).json({ message: "Server bootstrap failed" });
+    }
+    return undefined;
+  }
 }
