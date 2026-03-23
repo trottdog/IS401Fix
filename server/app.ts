@@ -4,8 +4,8 @@ import type { Request, Response, NextFunction } from "express";
 import session from "express-session";
 import * as fs from "fs";
 import * as path from "path";
-import { registerRoutes } from "./routes";
-import { KnexSessionStore, initializeDatabase } from "./db";
+import { registerRoutes } from "./routes.js";
+import { KnexSessionStore, initializeDatabase } from "./db.js";
 
 const log = console.log;
 const isProduction = process.env.NODE_ENV === "production";

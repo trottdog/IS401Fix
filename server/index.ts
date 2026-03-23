@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { createApp } from "./app";
+import { createApp } from "./app.js";
 const log = console.log;
 const isProduction = process.env.NODE_ENV === "production";
 

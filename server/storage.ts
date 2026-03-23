@@ -1,4 +1,4 @@
-import { initializeDatabase, PostgresStorage } from "./db";
+import { initializeDatabase, PostgresStorage } from "./db.js";
 import {
   type User, type InsertUser, type Building, type Category,
   type Club, type InsertClub, type Event, type InsertEvent,

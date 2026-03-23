@@ -1,8 +1,8 @@
 import type { Express, Request, Response } from "express";
 import * as path from "path";
 import * as fs from "fs";
-import { storage } from "./storage";
-import { db } from "./db";
+import { storage } from "./storage.js";
+import { db } from "./db.js";
 import {
   insertUserSchema,
   insertEventSchema,
